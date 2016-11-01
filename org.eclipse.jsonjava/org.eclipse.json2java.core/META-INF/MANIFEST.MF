@@ -6,6 +6,11 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.json2java.core.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.jdt.core
-Export-Package: org.eclipse.json2java.core.jdt,
+ org.eclipse.jdt.core,
+ org.eclipse.json
+Export-Package: org.eclipse.json2java.core,
+ org.eclipse.json2java.core.jdt,
  org.eclipse.json2java.core.parser
+Bundle-ClassPath: lib/gson-2.8.0.jar,
+ lib/guava-20.0.jar,
+ .

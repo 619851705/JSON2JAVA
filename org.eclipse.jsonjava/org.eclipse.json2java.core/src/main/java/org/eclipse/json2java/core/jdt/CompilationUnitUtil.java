@@ -1,5 +1,6 @@
 package org.eclipse.json2java.core.jdt;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
@@ -9,7 +10,7 @@ import org.eclipse.jdt.core.JavaModelException;
 
 public class CompilationUnitUtil {
 
-	public static void createCompilationUnit(IPackageFragment fragment) throws JavaModelException {
+	public static void createCompilationUnit(IPackageFragment fragment, IFile file) throws JavaModelException {
 
 		ICompilationUnit compilationUnit = fragment.createCompilationUnit("Root.java", "package " + fragment.getElementName() + ";",
 				false, null);
