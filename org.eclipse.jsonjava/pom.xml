@@ -8,5 +8,10 @@
   	
   	<module>org.eclipse.json2java.ui</module>
   	<module>org.eclipse.json2java.core</module>
+  	
+  	
+  	
+  	<module>org.eclipse.json2java.feature</module>
+  	<module>org.eclipse.json2java.updatesite</module>
   </modules>
 </project>

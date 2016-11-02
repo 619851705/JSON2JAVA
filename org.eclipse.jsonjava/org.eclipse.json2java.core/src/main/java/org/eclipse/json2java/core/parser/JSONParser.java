@@ -112,7 +112,15 @@ public class JSONParser {
 				String key = entry.getKey();
 				if (value.isJsonArray()) {
 					for (JsonElement element : (JsonArray)value) {
-						System.out.println(element);
+						if(element.isJsonObject()) {
+							IType parseJsonObject = parseJsonObject(key, (JsonObject) element);
+							classType.getCompilationUnit().createImport("java.util.List", null, new NullProgressMonitor());	
+							
+							String name = "private List<" + parseJsonObject.getElementName() + "> " + key + ";"; 
+							classType.createField(name, null, false, new NullProgressMonitor());
+							
+							break;
+						}
 					}
 				} else if (value.isJsonObject()) {
 					IType parseJsonObject = parseJsonObject(key, (JsonObject) value);
