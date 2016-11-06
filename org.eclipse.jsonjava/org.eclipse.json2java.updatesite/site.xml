@@ -4,7 +4,7 @@
       A plugin solution to parse json file or json string in the java project and convert it java template.
 User can select a package to make the created java files to be saved.
    </description>
-   <feature url="features/org.eclipse.json2java.feature_1.0.0.201611022208.jar" id="org.eclipse.json2java.feature" version="1.0.0.201611022208"/>
+   <feature url="features/org.eclipse.json2java.feature_1.0.0.201611061636.jar" id="org.eclipse.json2java.feature" version="1.0.0.201611061636"/>
    <archive path="deployment" url="deployment"/>
    <category-def name="Json Utility" label="Json Utility"/>
 </site>
