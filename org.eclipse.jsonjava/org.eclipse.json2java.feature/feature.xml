@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.json2java.feature"
-      label="Feature"
+      label="JSON2JAVA"
       version="1.0.0.qualifier">
 
    <description url="http://www.example.com/description">
@@ -20,7 +20,6 @@
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.jdt.core"/>
-      <import plugin="org.eclipse.json"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.jdt.ui"/>
    </requires>

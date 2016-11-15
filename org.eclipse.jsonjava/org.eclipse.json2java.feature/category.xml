@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.json2java.feature_1.0.0.qualifier.jar" id="org.eclipse.json2java.feature" version="1.0.0.qualifier">
+      <category name="org.eclipse.json2java.category"/>
+   </feature>
+   <category-def name="org.eclipse.json2java.category" label="JSON2JAVA"/>
+</site>
