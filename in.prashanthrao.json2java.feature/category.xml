@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <bundle id="in.prashanthrao.json2java" version="1.0.0.qualifier">
+      <category name="in.prashanthrao.json2java.category"/>
+   </bundle>
+   <category-def name="in.prashanthrao.json2java.category" label="Json2Java"/>
+</site>
