@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Json2Java" url="prashanthrao.in/json2java">
+      An utility plugin to create java model from json.
+   </description>
+   <feature url="features/in.prashanthrao.json2java.feature_1.0.0.qualifier.jar" id="in.prashanthrao.json2java.feature" version="1.0.0.qualifier">
+      <category name="in.prashanthrao.json2java"/>
+   </feature>
+   <category-def name="in.prashanthrao.json2java" label="Json2Java">
+      <description>
+         An utility plugin to create java model from json.
+      </description>
+   </category-def>
+</site>
