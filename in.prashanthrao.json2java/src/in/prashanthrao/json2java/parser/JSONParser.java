@@ -31,22 +31,28 @@ public class JSONParser {
 
 		JsonParser jsonParser = new JsonParser();
 		JsonElement jsonElement = jsonParser.parse(new FileReader(file));
-		parse(jsonElement);
+		parse("Root", jsonElement);
 	}
 	
-	private void parse(JsonElement jsonElement) throws JavaModelException {
+	private void parse(String classname, JsonElement jsonElement) throws JavaModelException {
 		
 		if (jsonElement.isJsonArray()) {
 			for (JsonElement element : (JsonArray)jsonElement) {
-				parse(element);
+				parse("Root", element);
 			}
 		} else if (jsonElement.isJsonObject()) {
 			
 			JsonObject jsonObject = (JsonObject) jsonElement;
 			Set<Entry<String, JsonElement>> entrySet = jsonObject.entrySet();
+			
+			parseJsonObject(classname, jsonObject);
 			for (Entry<String, JsonElement> entry : entrySet) {
 				if (entry.getValue().isJsonObject()) {
-					parseJsonObject(entry.getKey(), (JsonObject)entry.getValue());
+					parse(entry.getKey(), (JsonObject)entry.getValue());
+				} else if (entry.getValue().isJsonArray()) {
+					for (JsonElement element : (JsonArray)entry.getValue()) {
+						parse(entry.getKey(), element);
+					}
 				}
 			}
 		} else if (jsonElement.isJsonPrimitive()) {
@@ -100,7 +106,14 @@ public class JSONParser {
 			
 			// Create file and class
 			className = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, className);
-			ICompilationUnit compilationUnit = fragment.createCompilationUnit(className +".java", "package " + fragment.getElementName() + ";",
+			
+			ICompilationUnit compilationUnit = fragment.getCompilationUnit(className +".java");
+			
+			if(compilationUnit.exists()) {
+				return compilationUnit.getType("class");
+			}
+			
+			compilationUnit = fragment.createCompilationUnit(className +".java", "package " + fragment.getElementName() + ";",
 					false, null);
 			classType = compilationUnit.createType("public class " + className +"{}", null, true, new NullProgressMonitor());
 			
@@ -116,7 +129,7 @@ public class JSONParser {
 							IType parseJsonObject = parseJsonObject(key, (JsonObject) element);
 							classType.getCompilationUnit().createImport("java.util.List", null, new NullProgressMonitor());	
 							
-							String name = "private List<" + parseJsonObject.getElementName() + "> " + key + ";"; 
+							String name = "private List<" + parseJsonObject.getElementName() + "> " + key + ";\n"; 
 							classType.createField(name, null, false, new NullProgressMonitor());
 							
 							break;
@@ -124,19 +137,18 @@ public class JSONParser {
 					}
 				} else if (value.isJsonObject()) {
 					IType parseJsonObject = parseJsonObject(key, (JsonObject) value);
-					String name = "private " + parseJsonObject.getElementName() + " " + key + ";"; 
+					String name = "private " + parseJsonObject.getElementName() + " " + key + ";\n"; 
 					classType.createField(name, null, false, new NullProgressMonitor());
 				} else if (value.isJsonPrimitive()) {
 					
 					JsonPrimitive jsonPrimitive = (JsonPrimitive) value;
 					String name = null;
 					if (jsonPrimitive.isString()) {
-						name = "private String " +  key + ";";
+						name = "private String " +  key + ";\n";
 					} else if (jsonPrimitive.isNumber()) {
-						name = "private double " + key + ";";
+						name = "private double " + key + ";\n";
 					} if (jsonPrimitive.isBoolean()) {
-						name = "private boolean "+ key + ";";
-						
+						name = "private boolean "+ key + ";\n";
 					}
 					classType.createField(name, null, false, new NullProgressMonitor());
 				}
