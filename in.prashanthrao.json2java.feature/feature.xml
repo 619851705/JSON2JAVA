@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="in.prashanthrao.json2java.feature"
-      label="Json2Java Feature"
+      label="JSON2JAVA"
       version="1.0.0.qualifier"
       provider-name="Prashanth">
 
